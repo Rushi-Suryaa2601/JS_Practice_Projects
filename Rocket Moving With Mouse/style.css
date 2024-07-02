@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background:url("bg-img.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
+#roc{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    transition: 0.2s ease-out;
+}
+
+#roc img{
+    width: 100px;
+}
