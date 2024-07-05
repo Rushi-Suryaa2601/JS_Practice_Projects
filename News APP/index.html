@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        .container{
+            width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: antiquewhite;
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+        }
+        h1{
+            padding: 10px;
+            text-align: center;
+            background-color:bisque;
+            border-radius: 20px;
+
+        }
+
+        ul{
+            list-style-type: none;
+            padding-top: 20px;
+        }
+
+        li{
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid gray;
+        }
+
+        h2{
+            font-size: 1.5rem;
+            padding: 10px;
+
+        }
+
+        p{
+            color: gray;
+            padding: 10px;
+        }
+
+        a{
+            text-decoration: none;
+            color: brown;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Latest News</h1>
+        <ul id="news-list"></ul>
+    </div>
+
+    <script>
+        fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ftechcrunch.com%2Ffeed%2F').then(response=>response.json()).then(data=>{
+            const newslist=document.getElementById('news-list');
+            // console.log(data);
+            data.items.forEach(item => {
+                const li=document.createElement('li');
+                const h2=document.createElement('h2');
+                const a=document.createElement('a');
+                h2.textContent=item.title;
+                a.textContent='Read More';
+                a.href=item.link;
+                a.target='_blank'
+                li.appendChild(h2);
+                li.appendChild(document.createTextNode(item.description));
+                li.appendChild(a);
+                newslist.appendChild(li);
+                
+            });
+        })
+    </script>
+    
+</body>
+</html>
